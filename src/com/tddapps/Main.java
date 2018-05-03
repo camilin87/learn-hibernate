@@ -9,22 +9,7 @@ public class Main {
         System.out.println("Starting program");
         System.out.println(System.getProperty("user.dir"));
 
-        SessionFactory factory = null;
-
-        try {
-            var configuration = new Configuration();
-
-            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/test_sandbox");
-
-            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-            configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-            configuration.setProperty("hibernate.show_sql", "true");
-
-            factory = configuration.configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
+        var factory = buildSessionFactory();
 
         PrintSeparator();
         AddEmployees(factory);
@@ -33,6 +18,25 @@ public class Main {
         PrintSeparator();
 
         System.exit(0);
+    }
+
+    private static SessionFactory buildSessionFactory() {
+        try {
+            var configuration = new Configuration();
+            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/test_sandbox");
+            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+            configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
+            configuration.setProperty("hibernate.show_sql", "true");
+
+            configuration.addPackage("com.tddapps");
+            configuration.addAnnotatedClass(Employee.class);
+            configuration.addAnnotatedClass(SuperEmployee.class);
+
+            return configuration.buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
 
     private static void PrintSeparator() {
