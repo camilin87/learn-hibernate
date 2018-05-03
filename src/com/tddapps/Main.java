@@ -2,7 +2,6 @@ package com.tddapps;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Main {
@@ -13,7 +12,11 @@ public class Main {
         SessionFactory factory = null;
 
         try {
-            factory = new Configuration().configure().buildSessionFactory();
+            var configuration = new Configuration();
+
+            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/test_sandbox");
+
+            factory = configuration.configure().buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
