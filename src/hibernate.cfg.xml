@@ -10,5 +10,6 @@
         <property name="show_sql">true</property>
 
         <mapping class="com.tddapps.Employee"/>
+        <mapping class="com.tddapps.SuperEmployee"/>
     </session-factory>
 </hibernate-configuration>
