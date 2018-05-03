@@ -15,6 +15,7 @@ public class Main {
             var configuration = new Configuration();
 
             configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/test_sandbox");
+            configuration.setProperty("hibernate.show_sql", "true");
 
             factory = configuration.configure().buildSessionFactory();
         } catch (Throwable ex) {
