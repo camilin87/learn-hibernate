@@ -63,7 +63,7 @@ public class SuperEmployee {
     }
 
     @Embeddable
-    class SuperEmployeePK implements Serializable {
+    static class SuperEmployeePK implements Serializable {
         @Column(name = "badge_number")
         private String badgeNumber;
         @Column(name = "department")
