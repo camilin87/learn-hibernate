@@ -24,9 +24,16 @@ public class Main {
         try {
             var configuration = new Configuration();
             configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/test_sandbox");
+
             configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
             configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
             configuration.setProperty("hibernate.show_sql", "true");
+
+            configuration.setProperty("hibernate.c3p0.min_size", "5");
+            configuration.setProperty("hibernate.c3p0.max_size", "20");
+            configuration.setProperty("hibernate.c3p0.timeout", "300");
+            configuration.setProperty("hibernate.c3p0.max_statements", "50");
+            configuration.setProperty("hibernate.c3p0.idle_test_period", "3000");
 
             configuration.addPackage("com.tddapps");
             configuration.addAnnotatedClass(Employee.class);
