@@ -3,6 +3,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class Main {
     }
 
     private static void AddSuperEmployees(SessionFactory factory) {
-        var keyPrefix = LocalDate.now().toString();
+        var keyPrefix = LocalTime.now().toString();
 
         var repository = new SuperEmployeeRepository(factory);
 
@@ -43,7 +44,7 @@ public class Main {
                         "1000001",
                         String.format("%s-pro", keyPrefix)
                 ),
-                "SZara",
+                "SZarai",
                 "SAli",
                 1000
         ));
@@ -61,8 +62,8 @@ public class Main {
                         "1000002",
                         String.format("%s-dev", keyPrefix)
                 ),
-                "SJohn",
-                "SPaul",
+                "SJohns",
+                "SPau",
                 10000
         ));
 
@@ -75,9 +76,9 @@ public class Main {
     private static void AddEmployees(SessionFactory factory) {
         var repository = new EmployeeRepository(factory);
 
-        var empID1 = repository.addEmployee("Zara", "Ali", 1000);
+        var empID1 = repository.addEmployee("Zarai", "Ali", 1000);
         var empID2 = repository.addEmployee("Daisy", "Das", 5000);
-        repository.addEmployee("John", "Paul", 10000);
+        repository.addEmployee("Johnn", "Pau", 10000);
 
 
         repository.listEmployees();

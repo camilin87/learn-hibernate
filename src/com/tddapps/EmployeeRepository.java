@@ -41,7 +41,7 @@ public class EmployeeRepository {
             var employees = session.createQuery("FROM Employee").list();
             for (var obj : employees) {
                 var employee = (Employee) obj;
-                System.out.print("First Name: " + employee.getFirstName());
+                System.out.print("  First Name: " + employee.getFirstName());
                 System.out.print("  Last Name: " + employee.getLastName());
                 System.out.println("  Salary: " + employee.getSalary());
             }
