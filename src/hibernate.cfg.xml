@@ -3,16 +3,12 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-
         <property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
-
-        <!-- Assume test is the database name -->
-
         <property name = "hibernate.connection.url">jdbc:postgresql://localhost:5432/test_sandbox</property>
 
-        <!-- List of XML mapping files -->
-        <mapping resource = "Employee.hbm.xml"/>
+        <property name="show_sql">true</property>
 
+        <mapping class="com.tddapps.Employee"/>
     </session-factory>
 </hibernate-configuration>
